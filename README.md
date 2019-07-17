@@ -1,3 +1,5 @@
-to start app run:
+to start app in development:
 
 `yarn run dev-server`
+
+
