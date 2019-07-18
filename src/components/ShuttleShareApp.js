@@ -5,12 +5,13 @@ import Shuttles from './Shuttles';
 
 export default class ShuttleShareApp extends React.Component {
   state = {
-    shuttles: []
+    shuttles: [['Rossland', 'BS', '3'], ['Rossland', 'Whiskey', '2']]
   };
 
   handlePostShuttle = (shuttle) => {
+    console.log("new shuttle", shuttle);
     if (!shuttle) {
-      return 'Enter valid value to add item';
+      return 'Enter valid value to add shuttle';
     } else if (this.state.shuttles.indexOf(shuttle) > 1) {
       return 'This shuttle already exists';
 
@@ -31,6 +32,7 @@ export default class ShuttleShareApp extends React.Component {
 
   render() {
     const subTitle = 'Rossland rideshare for people and bikes';
+    console.log(this.state.shuttles);
     return (
       <div>
         <Header subtitle={subTitle} />
