@@ -5,8 +5,10 @@ import Shuttles from './Shuttles';
 
 export default class ShuttleShareApp extends React.Component {
   state = {
-    shuttles: [['Rossland', 'BS', '3'], ['Rossland', 'Whiskey', '2']]
-  };
+    shuttles: [
+      { id: '3', from: "Rossland", to: "BS", spots: 6 },
+      { id: '4', from: "Ross", to: "Malde", spots: 7 }
+    ]};
 
   handlePostShuttle = (shuttle) => {
     console.log("new shuttle", shuttle);

@@ -26,49 +26,29 @@ const Shuttles = (props) => {
     'Spots'
   ];
 
-  function createData(from, to, spots) {
-    return { from, to, spots };
-  }
-
   const rows = [
-    createData('Rossland', 'BS', '3'),
-    createData('Rossland', 'SMD', '2'),
+    { id: '3', from: "Rossland", to: "BS", spots: 6 },
+    { id: '4', from: "Ross", to: "Malde", spots: 2 }
   ];
 
   const classes = useStyles();
 
   return (
-    // <div>
-    //   <button onClick={props.handleDeleteShuttle}>Remove All</button>
-    //   {props.shuttles.length === 0 && <p>Please add a shuttle to get started</p>}
-    //   {
-    //     props.shuttles.map((shuttle) => (
-    //       <Shuttle
-    //         key={shuttle}
-    //         shuttleText={shuttle}
-    //         handleDeleteShuttle={props.handleDeleteShuttle}
-    //       />
-    //     ))
-    //   }
-    // </div>
-
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
             <TableCell>From</TableCell>
-            <TableCell align="right">To</TableCell>
-            <TableCell align="right">Spots</TableCell>
+            <TableCell>To</TableCell>
+            <TableCell>Spots</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.from}
-              </TableCell>
-              <TableCell align="right">{row.to}</TableCell>
-              <TableCell align="right">{row.spots}</TableCell>
+          {props.shuttles.map(row => (
+            <TableRow key={row.id}>
+              <TableCell>{row.from}</TableCell>
+              <TableCell>{row.to}</TableCell>
+              <TableCell>{row.spots}</TableCell>
             </TableRow>
           ))}
         </TableBody>
