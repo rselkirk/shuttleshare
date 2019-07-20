@@ -18,7 +18,7 @@ export default class ShuttleShareApp extends React.Component {
       return 'This shuttle already exists';
 
     }
-    this.setState((prevState) => ({ shuttles: prevState.shuttles.concat(shuttle) }));
+    this.setState((prevState) => ({ shuttles: [...prevState.shuttles, shuttle] }));
   };
   handleDeleteShuttle = (shuttleToRemove) => {
     this.setState((prevState) => ({

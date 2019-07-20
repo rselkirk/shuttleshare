@@ -44,8 +44,8 @@ const Shuttles = (props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.shuttles.map(row => (
-            <TableRow key={row.id}>
+          {props.shuttles.map((row, i) => (
+            <TableRow key={`trc-${i}`}>
               <TableCell>{row.from}</TableCell>
               <TableCell>{row.to}</TableCell>
               <TableCell>{row.spots}</TableCell>
