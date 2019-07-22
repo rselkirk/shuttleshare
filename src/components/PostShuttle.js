@@ -30,9 +30,22 @@ export default class PostShuttle extends React.Component {
             <input type="text" name="destination"/>
           </label>
           <label>
+            Date:
+            <input type="text" name="date"/>
+          </label>
+          <label>
+            Time:
+            <input type="text" name="time"/>
+          </label>
+          <label>
             Spots:
             <input type="text" name="spots"/>
           </label>
+          <label>
+            Cost:
+            <input type="text" name="cost"/>
+          </label>
+          
           <button>Post Shuttle</button>
         </form>
       </div>
