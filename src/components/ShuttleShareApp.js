@@ -5,17 +5,20 @@ import Shuttles from './Shuttles';
 
 export default class ShuttleShareApp extends React.Component {
   state = {
-    shuttles: []
-  };
+    shuttles: [
+      { id: '3', from: "Rossland", to: "BS", spots: 6 },
+      { id: '4', from: "Ross", to: "Malde", spots: 7 }
+    ]};
 
   handlePostShuttle = (shuttle) => {
+    console.log("new shuttle", shuttle);
     if (!shuttle) {
-      return 'Enter valid value to add item';
+      return 'Enter valid value to add shuttle';
     } else if (this.state.shuttles.indexOf(shuttle) > 1) {
       return 'This shuttle already exists';
 
     }
-    this.setState((prevState) => ({ shuttles: prevState.shuttles.concat(shuttle) }));
+    this.setState((prevState) => ({ shuttles: [...prevState.shuttles, shuttle] }));
   };
   handleDeleteShuttle = (shuttleToRemove) => {
     this.setState((prevState) => ({
@@ -31,6 +34,7 @@ export default class ShuttleShareApp extends React.Component {
 
   render() {
     const subTitle = 'Rossland rideshare for people and bikes';
+    console.log(this.state.shuttles);
     return (
       <div>
         <Header subtitle={subTitle} />
