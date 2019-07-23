@@ -11,7 +11,7 @@ export default class ShuttleShareApp extends React.Component {
     ]};
 
   handlePostShuttle = (shuttle) => {
-    console.log("new shuttle", shuttle);
+    console.log("RAHEL", shuttle);
     if (!shuttle) {
       return 'Enter valid value to add shuttle';
     } else if (this.state.shuttles.indexOf(shuttle) > 1) {
