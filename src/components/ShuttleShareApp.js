@@ -6,12 +6,11 @@ import Shuttles from './Shuttles';
 export default class ShuttleShareApp extends React.Component {
   state = {
     shuttles: [
-      { id: '3', from: "Rossland", to: "BS", spots: 6 },
-      { id: '4', from: "Ross", to: "Malde", spots: 7 }
+      { id: '3', from: "Rossland", to: "BS", date: "Aug 2", time: "10:00am", spots: 2, cost: "$5" },
+      { id: '4', from: "Rossland", to: "Malde Creek FSR - Bottom", date: "Aug 1", time: "3:00pm", spots: 3, cost: "$5" },
     ]};
 
   handlePostShuttle = (shuttle) => {
-    console.log("new shuttle", shuttle);
     if (!shuttle) {
       return 'Enter valid value to add shuttle';
     } else if (this.state.shuttles.indexOf(shuttle) > 1) {
@@ -34,7 +33,6 @@ export default class ShuttleShareApp extends React.Component {
 
   render() {
     const subTitle = 'Rossland rideshare for people and bikes';
-    console.log(this.state.shuttles);
     return (
       <div>
         <Header subtitle={subTitle} />

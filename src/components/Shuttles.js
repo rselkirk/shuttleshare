@@ -1,5 +1,4 @@
 import React from 'react';
-import Shuttle from './Shuttle';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -40,7 +39,10 @@ const Shuttles = (props) => {
           <TableRow>
             <TableCell>From</TableCell>
             <TableCell>To</TableCell>
+            <TableCell>Date</TableCell>
+            <TableCell>Time</TableCell>
             <TableCell>Spots</TableCell>
+            <TableCell>Cost</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -48,7 +50,10 @@ const Shuttles = (props) => {
             <TableRow key={`trc-${i}`}>
               <TableCell>{row.from}</TableCell>
               <TableCell>{row.to}</TableCell>
+              <TableCell>{row.date}</TableCell>
+              <TableCell>{row.time}</TableCell>
               <TableCell>{row.spots}</TableCell>
+              <TableCell>{row.cost}</TableCell>
             </TableRow>
           ))}
         </TableBody>
