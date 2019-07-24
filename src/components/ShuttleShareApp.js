@@ -11,7 +11,6 @@ export default class ShuttleShareApp extends React.Component {
     ]};
 
   handlePostShuttle = (shuttle) => {
-    console.log("RAHEL", shuttle);
     if (!shuttle) {
       return 'Enter valid value to add shuttle';
     } else if (this.state.shuttles.indexOf(shuttle) > 1) {
@@ -34,7 +33,6 @@ export default class ShuttleShareApp extends React.Component {
 
   render() {
     const subTitle = 'Rossland rideshare for people and bikes';
-    console.log(this.state.shuttles);
     return (
       <div>
         <Header subtitle={subTitle} />

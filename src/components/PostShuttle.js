@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
-
+import TextField from '@material-ui/core/TextField';
 
 // const useStyles = makeStyles(theme => ({
 //   root: {
@@ -28,25 +28,25 @@ export default class PostShuttle extends React.Component {
   state = {
     error: undefined,
     from: '',
+    to: '',
+    date: '',
+    time: '',
   };
 
   handleChange = (e) => {
-    console.log("ACK", e.target);
     this.setState({ [e.target.name]: e.target.value });
   };
   
   handlePostShuttle = (e) => {
-    console.log("post:", e, this.state.from);
     e.preventDefault();
 
     const shuttle = { 
-      // "from": e.target.elements.from.value.trim(), 
-      "from": this.state.from
-      // "to": e.target.elements.to.value.trim(), 
-      // "date": e.target.elements.date.value.trim(), 
-      // "time": e.target.elements.time.value.trim(), 
-      // "spots": e.target.elements.spots.value.trim(), 
-      // "cost": e.target.elements.cost.value.trim()
+      "from": this.state.from,
+      "to": this.state.to,
+      "date": this.state.date,
+      "time": this.state.time,
+      "spots": e.target.elements.spots.value.trim(),
+      "cost": e.target.elements.cost.value.trim(),
     };
 
     const error = this.props.handlePostShuttle(shuttle);
@@ -55,12 +55,11 @@ export default class PostShuttle extends React.Component {
 
     if (!error) {
       this.state.from = '';
-      // e.target.elements.from.value = '';
-      // e.target.elements.to.value = '';
-      // e.target.elements.date.value = '';
-      // e.target.elements.time.value = '';
-      // e.target.elements.spots.value = '';
-      // e.target.elements.cost.value = '';
+      this.state.to = '';
+      this.state.date = '';
+      this.state.time = '';
+      this.state.spots = '';
+      this.state.cost = '';
     }
   };
 
@@ -82,11 +81,65 @@ export default class PostShuttle extends React.Component {
               <MenuItem value="Neptune Creek">Neptune Creek</MenuItem>
               <MenuItem value="Malde Creek">Malde Creek</MenuItem>
             </Select>
-            
-            <button>Post Shuttle</button>
           </FormControl>
-        </form>
-        
+          <FormControl>
+            <InputLabel htmlFor="to">To</InputLabel>
+            <Select
+              onChange={this.handleChange}
+              value={this.state.to}
+              inputProps={{
+                name: 'to'
+              }}
+            >
+              <MenuItem value="Rossland">Rossland</MenuItem>
+              <MenuItem value="Neptune Creek">Neptune Creek</MenuItem>
+              <MenuItem value="Malde Creek">Malde Creek</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="date">Date</InputLabel>
+            <Select
+              onChange={this.handleChange}
+              value={this.state.date}
+              inputProps={{
+                name: 'date'
+              }}
+            >
+              <MenuItem value="Aug 1">Aug 1</MenuItem>
+              <MenuItem value="Aug 2">Aug 2</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="time">Time</InputLabel>
+            <Select
+              onChange={this.handleChange}
+              value={this.state.time}
+              inputProps={{
+                name: 'time'
+              }}
+            >
+              <MenuItem value="3:00 pm">3:00 pm</MenuItem>
+              <MenuItem value="4:00 pm">4:00 pm</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl>
+            <TextField
+              id="spots"
+              value={this.state.spots}
+              label="Spots"
+              margin="normal"
+            />
+          </FormControl>
+          <FormControl>
+            <TextField
+              id="cost"
+              value={this.state.cost}
+              label="Cost"
+              margin="normal"
+            />
+          </FormControl>
+          <Button type="submit">Post Shuttle</Button>
+          </form>
       </div>
     );
   }
