@@ -1,5 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -7,24 +8,23 @@ import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-//   },
-//   formControl: {
-//     margin: theme.spacing(1),
-//     minWidth: 120,
-//   },
-//   selectEmpty: {
-//     marginTop: theme.spacing(2),
-//   },
-// }));
-
-// const classes = useStyles();
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+});
 
 
-export default class PostShuttle extends React.Component {
+
+class PostShuttle extends React.Component {
   state = {
     error: undefined,
     from: '',
@@ -64,11 +64,12 @@ export default class PostShuttle extends React.Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
       <div>
         {this.state.error && <p>{this.state.error}</p>}
         <form onSubmit={this.handlePostShuttle}>
-          <FormControl>
+          <FormControl className={classes.formControl}>
             <InputLabel htmlFor="from">From</InputLabel>
             <Select
               onChange={this.handleChange}
@@ -82,7 +83,7 @@ export default class PostShuttle extends React.Component {
               <MenuItem value="Malde Creek">Malde Creek</MenuItem>
             </Select>
           </FormControl>
-          <FormControl>
+          <FormControl className={classes.formControl}>
             <InputLabel htmlFor="to">To</InputLabel>
             <Select
               onChange={this.handleChange}
@@ -96,7 +97,7 @@ export default class PostShuttle extends React.Component {
               <MenuItem value="Malde Creek">Malde Creek</MenuItem>
             </Select>
           </FormControl>
-          <FormControl>
+          <FormControl className={classes.formControl}>
             <InputLabel htmlFor="date">Date</InputLabel>
             <Select
               onChange={this.handleChange}
@@ -109,7 +110,7 @@ export default class PostShuttle extends React.Component {
               <MenuItem value="Aug 2">Aug 2</MenuItem>
             </Select>
           </FormControl>
-          <FormControl>
+          <FormControl className={classes.formControl}>
             <InputLabel htmlFor="time">Time</InputLabel>
             <Select
               onChange={this.handleChange}
@@ -122,7 +123,7 @@ export default class PostShuttle extends React.Component {
               <MenuItem value="4:00 pm">4:00 pm</MenuItem>
             </Select>
           </FormControl>
-          <FormControl>
+          <FormControl className={classes.formControl}>
             <TextField
               id="spots"
               value={this.state.spots}
@@ -130,7 +131,7 @@ export default class PostShuttle extends React.Component {
               margin="normal"
             />
           </FormControl>
-          <FormControl>
+          <FormControl className={classes.formControl}>
             <TextField
               id="cost"
               value={this.state.cost}
@@ -144,3 +145,9 @@ export default class PostShuttle extends React.Component {
     );
   }
 }
+
+PostShuttle.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(PostShuttle);
