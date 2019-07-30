@@ -20,6 +20,14 @@ const styles = theme => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  button: {
+    margin: theme.spacing(1),
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
 });
 
 
@@ -68,7 +76,7 @@ class PostShuttle extends React.Component {
     return (
       <div>
         {this.state.error && <p>{this.state.error}</p>}
-        <form onSubmit={this.handlePostShuttle}>
+        <form className={classes.root} onSubmit={this.handlePostShuttle}>
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="from">From</InputLabel>
             <Select
@@ -134,12 +142,13 @@ class PostShuttle extends React.Component {
           <FormControl className={classes.formControl}>
             <TextField
               id="cost"
+              className={classes.textField}
               value={this.state.cost}
               label="Cost"
               margin="normal"
             />
           </FormControl>
-          <Button type="submit">Post Shuttle</Button>
+          <Button variant="contained" className={classes.button} type="submit">Post Shuttle</Button>
           </form>
       </div>
     );
