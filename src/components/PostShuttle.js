@@ -30,8 +30,6 @@ const styles = theme => ({
   },
 });
 
-
-
 class PostShuttle extends React.Component {
   state = {
     error: undefined,
@@ -39,6 +37,8 @@ class PostShuttle extends React.Component {
     to: '',
     date: '',
     time: '',
+    spots: '',
+    cost: ''
   };
 
   handleChange = (e) => {
@@ -133,19 +133,26 @@ class PostShuttle extends React.Component {
           </FormControl>
           <FormControl className={classes.formControl}>
             <TextField
-              id="spots"
+              className={classes.textField}
+              onChange={this.handleChange}
               value={this.state.spots}
               label="Spots"
               margin="normal"
+              inputProps={{
+                name: 'spots'
+              }}
             />
           </FormControl>
           <FormControl className={classes.formControl}>
             <TextField
-              id="cost"
               className={classes.textField}
+              onChange={this.handleChange}
               value={this.state.cost}
               label="Cost"
               margin="normal"
+              inputProps={{
+                name: 'cost'
+              }}
             />
           </FormControl>
           <Button variant="contained" className={classes.button} type="submit">Post Shuttle</Button>
