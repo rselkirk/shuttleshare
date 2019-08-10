@@ -106,17 +106,16 @@ class PostShuttle extends React.Component {
             </Select>
           </FormControl>
           <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="date">Date</InputLabel>
-            <Select
-              onChange={this.handleChange}
-              value={this.state.date}
-              inputProps={{
-                name: 'date'
+            <TextField
+              id="date"
+              label="Departure Date"
+              type="date"
+              defaultValue="2019-09-24"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
               }}
-            >
-              <MenuItem value="Aug 1">Aug 1</MenuItem>
-              <MenuItem value="Aug 2">Aug 2</MenuItem>
-            </Select>
+            />
           </FormControl>
           <FormControl className={classes.formControl}>
             <TextField
