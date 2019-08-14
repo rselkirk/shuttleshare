@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from './Header';
 import PostShuttle from './PostShuttle';
 import Shuttles from './Shuttles';
 
@@ -35,7 +34,6 @@ export default class ShuttleShareApp extends React.Component {
     const subTitle = 'Rossland rideshare for people and bikes';
     return (
       <div>
-        <Header subtitle={subTitle} />
         <Shuttles
           shuttles={this.state.shuttles}
           handleDeleteShuttle={this.handleDeleteShuttle}
