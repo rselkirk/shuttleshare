@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import ShuttleShareApp from '../components/ShuttleShareApp';
+import ShuttleDashboardPage from '../components/ShuttleDashboardPage';
+import AddShuttlePage from '../components/AddShuttlePage';
 import EditShuttlePage from '../components/EditShuttlePage';
 import HelpPage from '../components/HelpPage';
 import NotFoundPage from '../components/NotFoundPage';
@@ -11,7 +12,8 @@ const AppRouter = () => (
     <div>
       <Header />
       <Switch>
-        <Route path="/" component={ShuttleShareApp} exact={true} />
+        <Route path="/" component={ShuttleDashboardPage} exact={true} />
+        <Route path="/create" component={AddShuttlePage} />
         <Route path="/edit/:id" component={EditShuttlePage} />
         <Route path="/help" component={HelpPage} />
         <Route component={NotFoundPage} />

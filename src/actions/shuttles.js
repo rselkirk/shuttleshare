@@ -2,8 +2,8 @@ import uuid from 'uuid';
 
 // ADD_SHUTTLE
 export const addShuttle = (
-  { from = '',
-    to = '',
+  { origin = '',
+    destination = '',
     date = '',
     time = '',
     spots = '',
@@ -13,8 +13,8 @@ export const addShuttle = (
   type: 'ADD_SHUTTLE',
   shuttle: {
     id: uuid(),
-    from,
-    to,
+    origin,
+    destination,
     date,
     time,
     spots,
