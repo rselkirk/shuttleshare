@@ -1,5 +1,5 @@
 import React from 'react';
-import PostShuttle from './PostShuttle';
+import ShuttleForm from './ShuttleForm';
 import Shuttles from './Shuttles';
 
 export default class ShuttleShareApp extends React.Component {
@@ -38,7 +38,7 @@ export default class ShuttleShareApp extends React.Component {
           shuttles={this.state.shuttles}
           handleDeleteShuttle={this.handleDeleteShuttle}
         />
-        <PostShuttle 
+        <ShuttleForm 
           handlePostShuttle={this.handlePostShuttle}
         />
       </div>

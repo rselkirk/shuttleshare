@@ -30,60 +30,76 @@ const styles = theme => ({
   },
 });
 
-class PostShuttle extends React.Component {
-  state = {
-    error: undefined,
-    from: '',
-    to: '',
-    date: '',
-    time: '',
-    spots: '',
-    cost: ''
+class ShuttleForm extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state ={
+      origin: props.shuttle ? props.shuttle.origin : '',
+      destination: props.destination ? props.shuttle.destination : '',
+      date: props.date ? props.shuttle.date : '',
+      time: props.time ? props.shuttle.time : '',
+      spots: props.spots ? props.shuttle.spots : '',
+      cost: props.cost ? props.shuttle.cost : '',
+      error: ''
+    }
+  }
+  onOriginChange = (e) => {
+    const origin = e.target.value;
+    this.setState(() => ({ origin }));
+  };
+  onDestinationChange = (e) => {
+    const destination = e.target.value;
+    this.setState(() => ({ destination }));
+  };
+  onDateChange = (e) => {
+    const date = e.target.value;
+    this.setState(() => ({ date }));
+  };
+  onTimeChange = (e) => {
+    const time = e.target.value;
+    this.setState(() => ({ time }));
+  };
+  onSpotsChange = (e) => {
+    const spots = e.target.value;
+    this.setState(() => ({ spots }));
+  };
+  onCostChange = (e) => {
+    const cost = e.target.value;
+    this.setState(() => ({ cost }));
   };
 
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-  
-  handlePostShuttle = (e) => {
+  onSubmit = (e) => {
     e.preventDefault();
 
-    const shuttle = { 
-      "from": this.state.from,
-      "to": this.state.to,
-      "date": this.state.date,
-      "time": this.state.time,
-      "spots": e.target.elements.spots.value.trim(),
-      "cost": e.target.elements.cost.value.trim(),
-    };
-
-    const error = this.props.handlePostShuttle(shuttle);
-
-    this.setState(() => ({ error }));
-
-    if (!error) {
-      this.state.from = '';
-      this.state.to = '';
-      this.state.date = '';
-      this.state.time = '';
-      this.state.spots = '';
-      this.state.cost = '';
+    if (!this.state.origin || !this.state.destination) {
+      this.setState(() => ({ error: 'Please provide origin and destination.' }));
+    } else {
+      this.setState(() => ({ error: '' }));
+      this.props.onSubmit({
+        from: this.state.from,
+        to: this.state.to,
+        date: this.state.date,
+        time: this.state.time,
+        spots: e.target.elements.spots.value.trim(),
+        cost: e.target.elements.cost.value.trim(),
+      });
     }
-  };
-
+  }
+  
   render() {
     const { classes } = this.props;
     return (
       <div>
         {this.state.error && <p>{this.state.error}</p>}
-        <form className={classes.root} onSubmit={this.handlePostShuttle}>
+        <form className={classes.root} onSubmit={this.onSubmit}>
           <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="from">From</InputLabel>
+            <InputLabel htmlFor="origin">Origin</InputLabel>
             <Select
-              onChange={this.handleChange}
-              value={this.state.from}
+              onChange={this.onOriginChange}
+              value={this.state.origin}
               inputProps={{
-                name: 'from'
+                name: 'origin'
               }}
             >
               <MenuItem value="Rossland">Rossland</MenuItem>
@@ -92,12 +108,12 @@ class PostShuttle extends React.Component {
             </Select>
           </FormControl>
           <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="to">To</InputLabel>
+            <InputLabel htmlFor="destination">Destination</InputLabel>
             <Select
-              onChange={this.handleChange}
-              value={this.state.to}
+              onChange={this.onDestinationChange}
+              value={this.state.destination}
               inputProps={{
-                name: 'to'
+                name: 'destination'
               }}
             >
               <MenuItem value="Rossland">Rossland</MenuItem>
@@ -135,7 +151,7 @@ class PostShuttle extends React.Component {
           <FormControl className={classes.formControl}>
             <TextField
               className={classes.textField}
-              onChange={this.handleChange}
+              onChange={this.onSpotsChange}
               value={this.state.spots}
               label="Spots"
               margin="normal"
@@ -147,7 +163,7 @@ class PostShuttle extends React.Component {
           <FormControl className={classes.formControl}>
             <TextField
               className={classes.textField}
-              onChange={this.handleChange}
+              onChange={this.onCostChange}
               value={this.state.cost}
               label="Cost"
               margin="normal"
@@ -156,15 +172,15 @@ class PostShuttle extends React.Component {
               }}
             />
           </FormControl>
-          <Button variant="contained" className={classes.button} type="submit">Post Shuttle</Button>
+          <Button variant="contained" className={classes.button} type="submit">Add Shuttle</Button>
           </form>
       </div>
     );
   }
 }
 
-PostShuttle.propTypes = {
+ShuttleForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PostShuttle);
+export default withStyles(styles)(ShuttleForm);
