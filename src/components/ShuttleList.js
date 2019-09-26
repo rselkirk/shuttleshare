@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import ShuttleListItem from './ShuttleListItem';
 
 const ShuttleList = (props) => (
+  
+
+
+
   <div>
     <h1>Shuttle List</h1>
     {props.shuttles.map((shuttle) => {
