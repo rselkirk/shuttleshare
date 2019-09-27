@@ -36,11 +36,11 @@ class ShuttleForm extends React.Component {
 
     this.state ={
       origin: props.shuttle ? props.shuttle.origin : '',
-      destination: props.destination ? props.shuttle.destination : '',
-      date: props.date ? props.shuttle.date : '',
-      time: props.time ? props.shuttle.time : '',
-      spots: props.spots ? props.shuttle.spots : '',
-      cost: props.cost ? props.shuttle.cost : '',
+      destination: props.shuttle ? props.shuttle.destination : '',
+      date: props.shuttle ? props.shuttle.date : '',
+      time: props.shuttle ? props.shuttle.time : '',
+      spots: props.shuttle ? props.shuttle.spots : '',
+      cost: props.shuttle ? props.shuttle.cost : '',
       error: ''
     }
   }
@@ -77,8 +77,8 @@ class ShuttleForm extends React.Component {
     } else {
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({
-        from: this.state.from,
-        to: this.state.to,
+        origin: this.state.origin,
+        destination: this.state.destination,
         date: this.state.date,
         time: this.state.time,
         spots: e.target.elements.spots.value.trim(),
@@ -126,7 +126,7 @@ class ShuttleForm extends React.Component {
               id="date"
               label="Departure Date"
               type="date"
-              defaultValue="2019-09-24"
+              onChange={this.onDateChange}
               className={classes.textField}
               InputLabelProps={{
                 shrink: true,
@@ -138,7 +138,7 @@ class ShuttleForm extends React.Component {
               id="time"
               label="Departure Time"
               type="time"
-              defaultValue="07:30"
+              onChange={this.onTimeChange}
               className={classes.textField}
               InputLabelProps={{
                 shrink: true,
