@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import ShuttleListItem from './ShuttleListItem';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -36,6 +37,7 @@ const ShuttleList = (props) => {
             <TableCell>Time</TableCell>
             <TableCell>Spots</TableCell>
             <TableCell>Cost</TableCell>
+            <TableCell>Edit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -47,6 +49,11 @@ const ShuttleList = (props) => {
               <TableCell>{shuttle.time}</TableCell>
               <TableCell>{shuttle.spots}</TableCell>
               <TableCell>{shuttle.cost}</TableCell>
+              <TableCell>
+                <Link to={`/edit/${shuttle.id}`}>
+                  <h2>Edit</h2>
+                </Link>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -4,6 +4,7 @@ import ShuttleForm from './ShuttleForm';
 import { editShuttle, removeShuttle } from '../actions/shuttles';
 
 const EditShuttlePage = (props) => {
+  console.log('rachel', props.shuttle.id);
   return (
     <div>
       <ShuttleForm
@@ -23,8 +24,9 @@ const EditShuttlePage = (props) => {
 };
 
 const mapStatetoProps = (state, props) => {
+  console.log('shuttle:', state)
   return {
-    shuttle: state.shuttle.find((shuttle) => shuttle.id === props.match.params.id)
+    shuttle: state.shuttles.find((shuttle) => shuttle.id === props.match.params.id)
   };
 };
 
