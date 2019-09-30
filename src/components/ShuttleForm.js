@@ -41,7 +41,7 @@ class ShuttleForm extends React.Component {
     this.state ={
       origin: props.shuttle ? props.shuttle.origin : '',
       destination: props.shuttle ? props.shuttle.destination : '',
-      date: props.shuttle ? props.shuttle.date : '',
+      date: props.shuttle ? moment(props.expense.date) : moment(),
       time: props.shuttle ? props.shuttle.time : '',
       spots: props.shuttle ? props.shuttle.spots : '',
       cost: props.shuttle ? props.shuttle.cost : '',
@@ -56,9 +56,13 @@ class ShuttleForm extends React.Component {
     const destination = e.target.value;
     this.setState(() => ({ destination }));
   };
-  onDateChange = (e) => {
-    const date = e.target.value;
-    this.setState(() => ({ date }));
+  onDateChange = (date) => {
+    if (date) {
+      this.setState(() => ({ date }));
+    }
+  };
+  onFocusChange = ({ focused }) => {
+    this.setState(() => ({ calendarFocused: focused }));
   };
   onTimeChange = (e) => {
     const time = e.target.value;
@@ -83,7 +87,7 @@ class ShuttleForm extends React.Component {
       this.props.onSubmit({
         origin: this.state.origin,
         destination: this.state.destination,
-        date: this.state.date,
+        date: this.state.date.valueOf(),
         time: this.state.time,
         spots: e.target.elements.spots.value.trim(),
         cost: e.target.elements.cost.value.trim(),
@@ -128,18 +132,12 @@ class ShuttleForm extends React.Component {
           <FormControl className={classes.formControl}>
             <SingleDatePicker
               id="date"
-              label="Departure Date"
-              type="date"
-              date={this.state.createdAt}
+              date={this.state.date}
               onDateChange={this.onDateChange}
               focused={this.state.calendarFocused}
               onFocusChange={this.onFocusChange}
               numberOfMonths={1}
               isOutsideRange={() => false}
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
             />
           </FormControl>
           <FormControl className={classes.formControl}>
