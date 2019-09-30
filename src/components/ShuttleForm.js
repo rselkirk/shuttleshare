@@ -1,5 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
+import 'react-dates/initialize';
+import { SingleDatePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -122,11 +126,16 @@ class ShuttleForm extends React.Component {
             </Select>
           </FormControl>
           <FormControl className={classes.formControl}>
-            <TextField
+            <SingleDatePicker
               id="date"
               label="Departure Date"
               type="date"
-              onChange={this.onDateChange}
+              date={this.state.createdAt}
+              onDateChange={this.onDateChange}
+              focused={this.state.calendarFocused}
+              onFocusChange={this.onFocusChange}
+              numberOfMonths={1}
+              isOutsideRange={() => false}
               className={classes.textField}
               InputLabelProps={{
                 shrink: true,
