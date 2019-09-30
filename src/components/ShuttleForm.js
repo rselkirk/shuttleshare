@@ -4,6 +4,9 @@ import moment from 'moment';
 import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, KeyboardTimePicker } from '@material-ui/pickers';
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -42,7 +45,7 @@ class ShuttleForm extends React.Component {
       origin: props.shuttle ? props.shuttle.origin : '',
       destination: props.shuttle ? props.shuttle.destination : '',
       date: props.shuttle ? moment(props.expense.date) : moment(),
-      time: props.shuttle ? props.shuttle.time : '',
+      time: props.shuttle ? props.shuttle.time : moment(),
       spots: props.shuttle ? props.shuttle.spots : '',
       cost: props.shuttle ? props.shuttle.cost : '',
       error: ''
@@ -64,9 +67,11 @@ class ShuttleForm extends React.Component {
   onFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }));
   };
-  onTimeChange = (e) => {
-    const time = e.target.value;
-    this.setState(() => ({ time }));
+  onTimeChange = (time) => {
+    console.log('time',time);
+    if (time) {
+      this.setState(() => ({ time }));
+    }
   };
   onSpotsChange = (e) => {
     const spots = e.target.value;
@@ -88,7 +93,7 @@ class ShuttleForm extends React.Component {
         origin: this.state.origin,
         destination: this.state.destination,
         date: this.state.date.valueOf(),
-        time: this.state.time,
+        time: this.state.time.valueOf(),
         spots: e.target.elements.spots.value.trim(),
         cost: e.target.elements.cost.value.trim(),
       });
@@ -98,6 +103,8 @@ class ShuttleForm extends React.Component {
   render() {
     const { classes } = this.props;
     return (
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        
       <div>
         {this.state.error && <p>{this.state.error}</p>}
         <form className={classes.root} onSubmit={this.onSubmit}>
@@ -141,17 +148,14 @@ class ShuttleForm extends React.Component {
             />
           </FormControl>
           <FormControl className={classes.formControl}>
-            <TextField
+            <KeyboardTimePicker
+              margin="normal"
               id="time"
               label="Departure Time"
-              type="time"
+              value={this.state.time}
               onChange={this.onTimeChange}
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              inputProps={{
-                step: 300, // 5 min
+              KeyboardButtonProps={{
+                'aria-label': 'change time',
               }}
             />
           </FormControl>
@@ -168,20 +172,22 @@ class ShuttleForm extends React.Component {
             />
           </FormControl>
           <FormControl className={classes.formControl}>
-            <TextField
-              className={classes.textField}
-              onChange={this.onCostChange}
-              value={this.state.cost}
-              label="Cost"
-              margin="normal"
-              inputProps={{
-                name: 'cost'
-              }}
-            />
+              <TextField
+                className={classes.textField}
+                onChange={this.onCostChange}
+                value={this.state.cost}
+                label="Cost"
+                margin="normal"
+                inputProps={{
+                  name: 'cost'
+                }}
+              />
+           
           </FormControl>
           <Button variant="contained" className={classes.button} type="submit">Add Shuttle</Button>
           </form>
-      </div>
+        </div>
+      </MuiPickersUtilsProvider>
     );
   }
 }
