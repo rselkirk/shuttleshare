@@ -44,7 +44,7 @@ class ShuttleForm extends React.Component {
     this.state ={
       origin: props.shuttle ? props.shuttle.origin : '',
       destination: props.shuttle ? props.shuttle.destination : '',
-      date: props.shuttle ? moment(props.expense.date) : moment(),
+      date: props.shuttle ? moment(props.shuttle.date) : moment(),
       time: props.shuttle ? props.shuttle.time : moment(),
       spots: props.shuttle ? props.shuttle.spots : '',
       cost: props.shuttle ? props.shuttle.cost : '',
@@ -104,87 +104,85 @@ class ShuttleForm extends React.Component {
     const { classes } = this.props;
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        
-      <div>
-        {this.state.error && <p>{this.state.error}</p>}
-        <form className={classes.root} onSubmit={this.onSubmit}>
-          <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="origin">Origin</InputLabel>
-            <Select
-              onChange={this.onOriginChange}
-              value={this.state.origin}
-              inputProps={{
-                name: 'origin'
-              }}
-            >
-              <MenuItem value="Rossland">Rossland</MenuItem>
-              <MenuItem value="Neptune Creek">Neptune Creek</MenuItem>
-              <MenuItem value="Malde Creek">Malde Creek</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="destination">Destination</InputLabel>
-            <Select
-              onChange={this.onDestinationChange}
-              value={this.state.destination}
-              inputProps={{
-                name: 'destination'
-              }}
-            >
-              <MenuItem value="Rossland">Rossland</MenuItem>
-              <MenuItem value="Neptune Creek">Neptune Creek</MenuItem>
-              <MenuItem value="Malde Creek">Malde Creek</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <SingleDatePicker
-              id="date"
-              date={this.state.date}
-              onDateChange={this.onDateChange}
-              focused={this.state.calendarFocused}
-              onFocusChange={this.onFocusChange}
-              numberOfMonths={1}
-              isOutsideRange={() => false}
-            />
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <KeyboardTimePicker
-              margin="normal"
-              id="time"
-              label="Departure Time"
-              value={this.state.time}
-              onChange={this.onTimeChange}
-              KeyboardButtonProps={{
-                'aria-label': 'change time',
-              }}
-            />
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <TextField
-              className={classes.textField}
-              onChange={this.onSpotsChange}
-              value={this.state.spots}
-              label="Spots"
-              margin="normal"
-              inputProps={{
-                name: 'spots'
-              }}
-            />
-          </FormControl>
-          <FormControl className={classes.formControl}>
-              <TextField
-                className={classes.textField}
-                onChange={this.onCostChange}
-                value={this.state.cost}
-                label="Cost"
-                margin="normal"
+        <div>
+          {this.state.error && <p>{this.state.error}</p>}
+          <form className={classes.root} onSubmit={this.onSubmit}>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="origin">Origin</InputLabel>
+              <Select
+                onChange={this.onOriginChange}
+                value={this.state.origin}
                 inputProps={{
-                  name: 'cost'
+                  name: 'origin'
+                }}
+              >
+                <MenuItem value="Rossland">Rossland</MenuItem>
+                <MenuItem value="Neptune Creek">Neptune Creek</MenuItem>
+                <MenuItem value="Malde Creek">Malde Creek</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="destination">Destination</InputLabel>
+              <Select
+                onChange={this.onDestinationChange}
+                value={this.state.destination}
+                inputProps={{
+                  name: 'destination'
+                }}
+              >
+                <MenuItem value="Rossland">Rossland</MenuItem>
+                <MenuItem value="Neptune Creek">Neptune Creek</MenuItem>
+                <MenuItem value="Malde Creek">Malde Creek</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              <SingleDatePicker
+                id="date"
+                date={this.state.date}
+                onDateChange={this.onDateChange}
+                focused={this.state.calendarFocused}
+                onFocusChange={this.onFocusChange}
+                numberOfMonths={1}
+                isOutsideRange={() => false}
+              />
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              <KeyboardTimePicker
+                margin="normal"
+                id="time"
+                label="Departure Time"
+                value={this.state.time}
+                onChange={this.onTimeChange}
+                KeyboardButtonProps={{
+                  'aria-label': 'change time',
                 }}
               />
-           
-          </FormControl>
-          <Button variant="contained" className={classes.button} type="submit">Add Shuttle</Button>
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              <TextField
+                className={classes.textField}
+                onChange={this.onSpotsChange}
+                value={this.state.spots}
+                label="Spots"
+                margin="normal"
+                inputProps={{
+                  name: 'spots'
+                }}
+              />
+            </FormControl>
+            <FormControl className={classes.formControl}>
+                <TextField
+                  className={classes.textField}
+                  onChange={this.onCostChange}
+                  value={this.state.cost}
+                  label="Cost"
+                  margin="normal"
+                  inputProps={{
+                    name: 'cost'
+                  }}
+                />
+            </FormControl>
+            <Button variant="contained" className={classes.button} type="submit">Add Shuttle</Button>
           </form>
         </div>
       </MuiPickersUtilsProvider>
