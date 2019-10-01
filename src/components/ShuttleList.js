@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import ShuttleListItem from './ShuttleListItem';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -45,7 +46,7 @@ const ShuttleList = (props) => {
             <TableRow key={`trc-${i}`}>
               <TableCell>{shuttle.origin}</TableCell>
               <TableCell>{shuttle.destination}</TableCell>
-              <TableCell>{shuttle.date}</TableCell>
+              <TableCell>{moment(shuttle.date).format("MMM D")}</TableCell>
               <TableCell>{shuttle.time}</TableCell>
               <TableCell>{shuttle.spots}</TableCell>
               <TableCell>{shuttle.cost}</TableCell>
