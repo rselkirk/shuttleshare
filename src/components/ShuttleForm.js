@@ -1,5 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
+import 'react-dates/initialize';
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, 
+         KeyboardTimePicker,
+         KeyboardDatePicker 
+       } from '@material-ui/pickers';
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -37,8 +45,8 @@ class ShuttleForm extends React.Component {
     this.state ={
       origin: props.shuttle ? props.shuttle.origin : '',
       destination: props.shuttle ? props.shuttle.destination : '',
-      date: props.shuttle ? props.shuttle.date : '',
-      time: props.shuttle ? props.shuttle.time : '',
+      date: props.shuttle ? moment(props.shuttle.date) : moment(),
+      time: props.shuttle ? props.shuttle.time : moment(),
       spots: props.shuttle ? props.shuttle.spots : '',
       cost: props.shuttle ? props.shuttle.cost : '',
       error: ''
@@ -52,13 +60,19 @@ class ShuttleForm extends React.Component {
     const destination = e.target.value;
     this.setState(() => ({ destination }));
   };
-  onDateChange = (e) => {
-    const date = e.target.value;
-    this.setState(() => ({ date }));
+  onDateChange = (date) => {
+    if (date) {
+      this.setState(() => ({ date }));
+    }
   };
-  onTimeChange = (e) => {
-    const time = e.target.value;
-    this.setState(() => ({ time }));
+  onFocusChange = ({ focused }) => {
+    this.setState(() => ({ calendarFocused: focused }));
+  };
+  onTimeChange = (time) => {
+    console.log('time',time);
+    if (time) {
+      this.setState(() => ({ time }));
+    }
   };
   onSpotsChange = (e) => {
     const spots = e.target.value;
@@ -79,8 +93,8 @@ class ShuttleForm extends React.Component {
       this.props.onSubmit({
         origin: this.state.origin,
         destination: this.state.destination,
-        date: this.state.date,
-        time: this.state.time,
+        date: this.state.date.valueOf(),
+        time: this.state.time.valueOf(),
         spots: e.target.elements.spots.value.trim(),
         cost: e.target.elements.cost.value.trim(),
       });
@@ -90,91 +104,91 @@ class ShuttleForm extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
-        {this.state.error && <p>{this.state.error}</p>}
-        <form className={classes.root} onSubmit={this.onSubmit}>
-          <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="origin">Origin</InputLabel>
-            <Select
-              onChange={this.onOriginChange}
-              value={this.state.origin}
-              inputProps={{
-                name: 'origin'
-              }}
-            >
-              <MenuItem value="Rossland">Rossland</MenuItem>
-              <MenuItem value="Neptune Creek">Neptune Creek</MenuItem>
-              <MenuItem value="Malde Creek">Malde Creek</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="destination">Destination</InputLabel>
-            <Select
-              onChange={this.onDestinationChange}
-              value={this.state.destination}
-              inputProps={{
-                name: 'destination'
-              }}
-            >
-              <MenuItem value="Rossland">Rossland</MenuItem>
-              <MenuItem value="Neptune Creek">Neptune Creek</MenuItem>
-              <MenuItem value="Malde Creek">Malde Creek</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <TextField
-              id="date"
-              label="Departure Date"
-              type="date"
-              onChange={this.onDateChange}
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <TextField
-              id="time"
-              label="Departure Time"
-              type="time"
-              onChange={this.onTimeChange}
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              inputProps={{
-                step: 300, // 5 min
-              }}
-            />
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <TextField
-              className={classes.textField}
-              onChange={this.onSpotsChange}
-              value={this.state.spots}
-              label="Spots"
-              margin="normal"
-              inputProps={{
-                name: 'spots'
-              }}
-            />
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <TextField
-              className={classes.textField}
-              onChange={this.onCostChange}
-              value={this.state.cost}
-              label="Cost"
-              margin="normal"
-              inputProps={{
-                name: 'cost'
-              }}
-            />
-          </FormControl>
-          <Button variant="contained" className={classes.button} type="submit">Add Shuttle</Button>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <div>
+          {this.state.error && <p>{this.state.error}</p>}
+          <form className={classes.root} onSubmit={this.onSubmit}>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="origin">Origin</InputLabel>
+              <Select
+                onChange={this.onOriginChange}
+                value={this.state.origin}
+                inputProps={{
+                  name: 'origin'
+                }}
+              >
+                <MenuItem value="Rossland">Rossland</MenuItem>
+                <MenuItem value="Neptune Creek">Neptune Creek</MenuItem>
+                <MenuItem value="Malde Creek">Malde Creek</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="destination">Destination</InputLabel>
+              <Select
+                onChange={this.onDestinationChange}
+                value={this.state.destination}
+                inputProps={{
+                  name: 'destination'
+                }}
+              >
+                <MenuItem value="Rossland">Rossland</MenuItem>
+                <MenuItem value="Neptune Creek">Neptune Creek</MenuItem>
+                <MenuItem value="Malde Creek">Malde Creek</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              <KeyboardDatePicker
+                margin="normal"
+                id="date"
+                label="Departure Date"
+                format="dd MMM yyyy"
+                value={this.state.date}
+                onChange={this.onDateChange}
+                KeyboardButtonProps={{
+                  'aria-label': 'change date',
+                }}
+              />
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              <KeyboardTimePicker
+                margin="normal"
+                id="time"
+                label="Departure Time"
+                value={this.state.time}
+                onChange={this.onTimeChange}
+                KeyboardButtonProps={{
+                  'aria-label': 'change time',
+                }}
+              />
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              <TextField
+                className={classes.textField}
+                onChange={this.onSpotsChange}
+                value={this.state.spots}
+                label="Spots"
+                margin="normal"
+                inputProps={{
+                  name: 'spots'
+                }}
+              />
+            </FormControl>
+            <FormControl className={classes.formControl}>
+                <TextField
+                  className={classes.textField}
+                  onChange={this.onCostChange}
+                  value={this.state.cost}
+                  label="Cost"
+                  margin="normal"
+                  inputProps={{
+                    name: 'cost'
+                  }}
+                />
+            </FormControl>
+            <Button variant="contained" className={classes.button} type="submit">Add Shuttle</Button>
           </form>
-      </div>
+        </div>
+      </MuiPickersUtilsProvider>
     );
   }
 }
