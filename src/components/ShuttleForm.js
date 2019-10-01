@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import 'react-dates/initialize';
-import { SingleDatePicker } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, KeyboardTimePicker } from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, 
+         KeyboardTimePicker,
+         KeyboardDatePicker 
+       } from '@material-ui/pickers';
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -136,14 +137,16 @@ class ShuttleForm extends React.Component {
               </Select>
             </FormControl>
             <FormControl className={classes.formControl}>
-              <SingleDatePicker
+              <KeyboardDatePicker
+                margin="normal"
                 id="date"
-                date={this.state.date}
-                onDateChange={this.onDateChange}
-                focused={this.state.calendarFocused}
-                onFocusChange={this.onFocusChange}
-                numberOfMonths={1}
-                isOutsideRange={() => false}
+                label="Departure Date"
+                format="dd MMM yyyy"
+                value={this.state.date}
+                onChange={this.onDateChange}
+                KeyboardButtonProps={{
+                  'aria-label': 'change date',
+                }}
               />
             </FormControl>
             <FormControl className={classes.formControl}>
