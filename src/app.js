@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import moment from 'moment';
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
@@ -10,8 +11,8 @@ const store = configureStore();
 store.dispatch(addShuttle({ 
   origin: 'Rossland',
   destination: 'Neptune Creek',
-  date: 'Oct 1',
-  time: '2pm',
+  date: moment(),
+  time: moment(),
   spots: 3,
   cost: 5 }));
 

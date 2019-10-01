@@ -47,7 +47,7 @@ const ShuttleList = (props) => {
               <TableCell>{shuttle.origin}</TableCell>
               <TableCell>{shuttle.destination}</TableCell>
               <TableCell>{moment(shuttle.date).format("MMM D")}</TableCell>
-              <TableCell>{shuttle.time}</TableCell>
+              <TableCell>{moment(shuttle.time).format("h:mm A")}</TableCell>
               <TableCell>{shuttle.spots}</TableCell>
               <TableCell>{shuttle.cost}</TableCell>
               <TableCell>
