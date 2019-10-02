@@ -4,10 +4,10 @@ import uuid from 'uuid';
 export const addShuttle = (
   { origin = '',
     destination = '',
-    date = '',
-    time = '',
-    spots = '',
-    cost = ''
+    date = 0,
+    time = 0,
+    spots = 0,
+    cost = 0
   } = {}
 ) => ({
   type: 'ADD_SHUTTLE',
