@@ -1,4 +1,4 @@
-This web app is currently under construction!
+This web app is currently under construction and the in-progress version is currently deployed at https://shuttleshare.herokuapp.com/
 
 ### About Shuttleshare
 
