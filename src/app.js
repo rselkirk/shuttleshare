@@ -18,6 +18,7 @@ store.dispatch(addShuttle({
 
 const state = store.getState();
 
+console.log("test");
 const jsx = (
   <Provider store={store}>
     <AppRouter />
