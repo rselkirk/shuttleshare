@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import moment from 'moment';
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
-import configureStore from './store/configureStore';
+import configureStore from './store/configurestore';
 import { addShuttle } from './actions/shuttles';
 
 const store = configureStore();
