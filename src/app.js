@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { addShuttle } from './actions/shuttles';
+import './styles/styles.scss';
 
 const store = configureStore();
 

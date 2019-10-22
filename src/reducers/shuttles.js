@@ -5,8 +5,6 @@ const shuttlesReducerDefaultState = [];
 export default (state = shuttlesReducerDefaultState, action) => {
   switch (action.type) {
     case 'ADD_SHUTTLE':
-      console.log("shuttle added")
-      console.log(action.shuttle);
       return [
         ...state,
         action.shuttle
