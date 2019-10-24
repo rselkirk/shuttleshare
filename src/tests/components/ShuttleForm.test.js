@@ -12,14 +12,14 @@ beforeAll(() => {
 });
 
 test('should render ShuttleForm correctly', () => {
-  // const wrapper = shallow(<ShuttleForm />);
-  // expect(wrapper).toMatchSnapshot();
+  const wrapper = shallow(<ShuttleForm />);
+  expect(wrapper).toMatchSnapshot();
 });
 
-// test('should render ShuttleForm with shuttle data', () => {
-//   const wrapper = shallow(<ShuttleForm shuttle={shuttles[0]} />)
-//   expect(wrapper).toMatchSnapshot();
-// });
+test('should render ShuttleForm with shuttle data', () => {
+  const wrapper = shallow(<ShuttleForm shuttle={shuttles[0]} />)
+  expect(wrapper).toMatchSnapshot();
+});
 
 // test('should set new date on date change', () => {
 // });

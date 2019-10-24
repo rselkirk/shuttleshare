@@ -2,6 +2,6 @@
 
 exports[`should render ShuttleDashboardPage correctly 1`] = `
 <div>
-  <[object Object] />
+  <Connect(ShuttleList) />
 </div>
 `;

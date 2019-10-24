@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ShuttleForm correctly 1`] = `
+<ShuttleForm
+  classes={
+    Object {
+      "button": "ShuttleForm-button-4",
+      "formControl": "ShuttleForm-formControl-2",
+      "root": "ShuttleForm-root-1",
+      "selectEmpty": "ShuttleForm-selectEmpty-3",
+      "textField": "ShuttleForm-textField-5",
+    }
+  }
+/>
+`;
+
+exports[`should render ShuttleForm with shuttle data 1`] = `
+<ShuttleForm
+  classes={
+    Object {
+      "button": "ShuttleForm-button-4",
+      "formControl": "ShuttleForm-formControl-2",
+      "root": "ShuttleForm-root-1",
+      "selectEmpty": "ShuttleForm-selectEmpty-3",
+      "textField": "ShuttleForm-textField-5",
+    }
+  }
+  shuttle={
+    Object {
+      "cost": 500,
+      "date": "1970-01-01T00:00:00.100Z",
+      "destination": "Rossland",
+      "id": 1,
+      "origin": "Neptune Creek",
+      "spots": 2,
+      "time": "1970-01-01T00:00:00.100Z",
+    }
+  }
+/>
+`;

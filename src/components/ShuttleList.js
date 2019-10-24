@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import ShuttleListItem from './ShuttleListItem';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -28,7 +27,6 @@ const ShuttleList = (props) => {
 
   return (
     <Paper className={classes.root}>
-    <h1>Shuttle List</h1>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>

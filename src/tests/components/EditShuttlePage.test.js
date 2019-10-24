@@ -22,7 +22,7 @@ beforeEach(() => {
 });
 
 test('should render the EditShuttlePage', () => {
-  // expect(wrapper).toMatchSnapshot();
+  expect(wrapper).toMatchSnapshot();
 });
 
 // test('should handle EditShuttle', () => {
@@ -31,10 +31,10 @@ test('should render the EditShuttlePage', () => {
 //   expect(editShuttle).toHaveBeenLastCalledWith(shuttles[2].id, shuttles[2]);
 // });
 
-// test('should handle removeShuttle', () => {
-//   wrapper.find('button').simulate('click');
-//   expect(history.push).toHaveBeenLastCalledWith('/');
-//   expect(removeShuttle).toHaveBeenLastCalledWith({
-//     id: shuttles[2].id
-//   });
-// });
+test('should handle removeShuttle', () => {
+  wrapper.find('button').simulate('click');
+  expect(history.push).toHaveBeenLastCalledWith('/');
+  expect(removeShuttle).toHaveBeenLastCalledWith({
+    id: shuttles[2].id
+  });
+});

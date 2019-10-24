@@ -1,22 +1,61 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
-const Header = (props) => {
+export default function Header() {
+  const classes = useStyles();
+
   return (
-    <div>
-      <h1>{props.title}</h1>
-      <h2>{props.subtitle}</h2>
-      <NavLink to="/" activeClassName="is-active" exact={true}>Home</NavLink>
-      <NavLink to="/create" activeClassName="is-active">Add Shuttle</NavLink>
-      <NavLink to="/help" activeClassName="is-active">Help</NavLink>
-
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            ShuttleShare
+          </Typography>
+          <Button 
+            color="inherit"
+            component={Link}
+            to="/"
+          >
+            Shuttles
+          </Button>
+          <Button 
+            color="inherit"
+            component={Link}
+            to="/create"
+          >
+            Add Shuttle
+          </Button>
+          <Button 
+            color="inherit"
+            component={Link}
+            to="/help"
+          >
+            Help
+          </Button>
+        </Toolbar>
+      </AppBar>
     </div>
   );
-};
+}
 
-Header.defaultProps = {
-  title: 'ShuttleShare',
-  subtitle: 'Rossland rideshare for people and bikes'
-};
-
-export default Header;
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));

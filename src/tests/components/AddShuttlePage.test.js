@@ -13,11 +13,11 @@ beforeEach(() => {
 });
 
 test('should render AddShuttlePage correctly', () => {
-  // expect(wrapper).toMatchSnapshot();
+  expect(wrapper).toMatchSnapshot();
 });
 
 // test('should handle onSubmit', () => {
-  // wrapper.find('ShuttleForm').prop('onSubmit')(shuttles[1]);
-  // expect(history.push).toHaveBeenLastCalledWith('/');
+//   wrapper.find('ShuttleForm').prop('onSubmit')(shuttles[1]);
+//   expect(history.push).toHaveBeenLastCalledWith('/');
 //   expect(addShuttle).toHaveBeenLastCalledWith(shuttles[1]);
 // });
