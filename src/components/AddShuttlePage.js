@@ -11,7 +11,7 @@ export class AddShuttlePage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Add Shuttle</h1>
+        <h4>Add Shuttle</h4>
         <ShuttleForm
           onSubmit={this.onSubmit}
         />
