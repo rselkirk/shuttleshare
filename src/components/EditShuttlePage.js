@@ -31,7 +31,7 @@ const mapStatetoProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch, props) => ({
   editShuttle: (id, shuttle) => dispatch(editShuttle(id, shuttle)),
-  removeShuttle: () => dispatch(removeShuttle(data))
+  removeShuttle: (data) => dispatch(removeShuttle(data))
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(EditShuttlePage);
